@@ -20,9 +20,9 @@ info: http://algo.tpai.qq.com/home/information/index.html
     appCategory     67757 zeros (App开发者设定的App类目标签，类目标签有两层，使用3位数字编码，百位数表示一级类目，十位个位数表示二级类目，如“210”表示一级类目编号为2，二级类目编号为10，类目未知或者无法获取时，标记为0。)
 
 ### position.csv (7645 rows × 3 columns)
-    positionID      no missing values
-    sitesetID       3 uniques , 7556 zeros
-    positionType    6 uniques, 92 zeros
+    positionID      no missing values                
+    sitesetID       3 uniques , 7556 zeros              ??
+    positionType    6 uniques, 92 zeros             categorized
 
 ### user.csv  ( 2805118 rows × 8 columns)
     userID          all unique
@@ -38,22 +38,33 @@ info: http://algo.tpai.qq.com/home/information/index.html
     residence       400 uniques, 226812 zeros （同 hometown 规则一样）
 
 ### user_app_actions.csv ( 6003471 rows × 3 columns) 
-    * 训练数据开始时间之前16天开始连续30天的操作流水，即第1天0点到第31天0点
+    * installTime 训练数据开始时间之前16天开始连续30天的操作流水，即第1天0点到第31天0点
     userID          781112 uniques 
     installTime     6位数字 格式均为DDHHMM，其中DD代表第几天，HH代表小时，MM代表分钟
     appID           100923 uniques
-
-
 
 ### train.csv 
     label               **responsor
     clickTime           6位数字 格式均为DDHHMM，其中DD代表第几天，HH代表小时，MM代表分钟
     conversionTime      6位数字 格式均为DDHHMM，其中DD代表第几天，HH代表小时，MM代表分钟
+                        93262 not null
+                        conversionTime - clickTime <= 5
+                        
     creativeID          see ad.csv
     userID              see user.csv
     positionID          see position.csv
     connectionType      移动设备当前使用的联网方式，取值包括2G，3G，4G，WIFI，未知
     telecomsOperator    移动设备当前使用的运营商，取值包括中国移动，中国联通，中国电信，未知
+
+    plan:
+        1. plot label vs. connectionType
+        2. plot label vs. telecomsOperator
+        3. plot label vs. positionID
+
+    clickTime ?? installTime
+
+
+
 
 
 
